@@ -108,7 +108,7 @@ function M.VCS_branch() -- {{{ XXX: ***VERY*** non-optimal code. NEEDS REWORK
 end -- }}}
 
 function M.PercentPosition() -- {{{
-  return ((line(".") * 100) / line("$"))
+  return math.floor((line(".") * 100) / line("$"))
 end -- }}}
 
 function M.filetype() -- {{{
