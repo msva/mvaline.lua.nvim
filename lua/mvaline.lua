@@ -81,8 +81,8 @@ function M.get_filename() -- {{{
 end -- }}}
 
 function M.VCS_branch() -- {{{ XXX: ***VERY*** non-optimal code. NEEDS REWORK
-	local vcs, branch
 	if not b.vcs_branch then
+		local vcs, branch
 		local vcs_cmds = {
 			git = "(git branch --quiet --show-current) 2>/dev/null",
 			hg = "(hg branch) 2>/dev/null",
