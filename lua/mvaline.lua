@@ -62,7 +62,7 @@ function M.get_filename() -- {{{
 		local head = fn.getline(1)
 		local s_head=fn.split(head)
     local w_head
-		if not(fn.empty(s_head)) then
+		if fn.empty(s_head) == 0 then
 			w_head=s_head[0]
 		else
 			w_head="<empty>"
