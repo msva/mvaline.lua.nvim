@@ -73,7 +73,7 @@ function M.get_filename() -- {{{
 	else
 		-- bo.filename = expand('%:p:t')
 		b.filename = fln
-		if empty(b.filename) then
+		if empty(b.filename) > 0 then
 			b.filename = '<empty>'
 		end
 	end
