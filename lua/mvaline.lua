@@ -57,19 +57,13 @@ function M.get_filename() -- {{{
 		else
 			b.filename = 'git'
 		end
---	elseif exists("g.loaded_less") and g.loaded_less and exists(":Man") == 2
 	elseif M.filetype() == "man" and exists(":Man") == 2 then
 		local head = fn.getline(1)
-		local s_head=fn.split(head)
+		local s_head=head:match("^[^ ]+")
     local w_head
-		if fn.empty(s_head) == 0 then
-			w_head=s_head[0]
-		else
-			w_head="<empty>"
-		end
+		w_head = s_head or "<empty>"
 		local l_head=fn.tolower(w_head)
-		b.filename = fn.substitute(l_head,'\\([^(]*\\)(\\(.*\\))','\1.\2','g')
-		--let filename = substitute(tolower(split(getline(1))[0]),'\([^(]*\)(\(.*\))','\1.\2','g')
+		b.filename = l_head:gsub("^([^%(]+)%(([^%)+])%)","%1.%2")
 	else
 		-- bo.filename = expand('%:p:t')
 		b.filename = fln
@@ -303,7 +297,7 @@ function M.SL() -- {{{
 		sl:insert('%#VCS_Icon#' .. vcs_branch .. ' ' .. rlar)
 	end
 
-	sl:insert('%#isRO#%{&readonly?"'..ro..' ":""}')
+	sl:insert('%#isRO#%{&readonly?"'..' '..ro..'":""}')
 	sl:insert('%#FileName#')
 
 	sl:insert(' '..fln)
